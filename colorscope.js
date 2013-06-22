@@ -230,13 +230,13 @@
   // Entry Point
   
   var Index = indexDocument();
-  window.colorScopeRun = function() {
+  function colorScope() {
     getAlgorithm(function(alg) {
       if (alg) {
         recolorWithAlgorithm(Index, fBlind[alg]);
       }
     });
-  }
+  };
   
   // The Color Blind Simulation function is
   // copyright (c) 2000-2001 by Matthew Wickline and the
@@ -307,5 +307,7 @@
     var z=Math.round(r[0]*.299+r[1]*.587+r[2]*.114);
     return([z,z,z]);
   };
+  
+  return colorScope;
 
-})();
+})()();
