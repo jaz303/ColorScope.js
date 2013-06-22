@@ -1,1 +1,0 @@
-(function() { if (!window.colorScopeRun) { var s = document.createElement('script'); s.onload = function() { window.colorScopeRun(); }; s.src = 'https://s3.amazonaws.com/jaz303/colorscope.js?r=' + Math.random(); document.body.appendChild(s); } else { window.colorScopeRun(); } })();
