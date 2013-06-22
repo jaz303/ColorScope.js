@@ -11,6 +11,7 @@
   * Progress meter
   * Prevent double invocation
   * Investigate using webworkers for image translation?
+  * Support more CSS attributes, possibly SVG too
   * It would be cool to investigate possibilities for monkey-patching the canvas 2D context to do automatic translation whenever `fillStyle` or `strokeStyle` is updated.
   * I'd like to have a go at redoing this as a Chrome plugin. I think this would allow me to get around the various security restrictions.
 
