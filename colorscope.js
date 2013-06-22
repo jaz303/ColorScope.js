@@ -223,18 +223,49 @@
   }
   
   function getAlgorithm(callback) {
-    callback('Deuteranopia');
+    function addButton(ele, alg, bgcolor) {
+      var btn = document.createElement('input');
+      btn.type = 'button';
+      btn.value = alg;
+      btn.style.backgroundColor = bgcolor;
+      btn.style.color = 'white';
+      btn.style.border = 'none';
+      btn.style.display = 'block';
+      btn.style.width = '100%';
+      btn.style.marginBottom = '6px';
+      btn.style.borderRadius = '6px';
+      btn.style.fontSize = '14px';
+      btn.onclick = function() {
+        document.body.removeChild(chooser);
+        if (alg !== 'Cancel') callback(alg);
+      }
+      ele.appendChild(btn);
+    }
+    
+    var chooser = document.createElement('div');
+    chooser.style.position = 'fixed';
+    chooser.style.borderRadius = '8px';
+    chooser.style.top = '20px';
+    chooser.style.left = '20px';
+    chooser.style.padding = '10px';
+    chooser.style.backgroundColor = '#2c3e50';
+    chooser.style.boxShadow = '0 0 10px #505050';
+    for (var k in fBlind)
+      addButton(chooser, k, '#27ae60');
+    addButton(chooser, 'Cancel', '#c0392b');
+    document.body.appendChild(chooser);
   }
   
   //
   // Entry Point
   
-  var Index = indexDocument();
+  if (!window.__colorScopeIndex__) {
+    window.__colorScopeIndex__ = indexDocument();
+  }
+  
   function colorScope() {
     getAlgorithm(function(alg) {
-      if (alg) {
-        recolorWithAlgorithm(Index, fBlind[alg]);
-      }
+      recolorWithAlgorithm(window.__colorScopeIndex__, fBlind[alg]);
     });
   };
   
