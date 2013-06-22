@@ -1,6 +1,7 @@
 ;(function() {
   
   var URL         = /url\(['"]?([^'"]+)['"]?\)/;
+  var RGB_ZERO    = /rgb\(\s*0,\s*0\s*,\s*0\s*\)/;
   var RGBA_ZERO   = /rgba\(\s*0,\s*0\s*,\s*0\s*,\s*0\s*\)/;
   var HEX_6       = /#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/ig;
   var HEX_3       = /#([0-9a-f]{1})([0-9a-f]{1})([0-9a-f]{1})/ig;
@@ -31,7 +32,8 @@
     'param',
     'video',
     'audio',
-    'script'
+    'script',
+    'iframe'
   ];
   
   if (typeof Array.prototype.forEach === 'function') {
@@ -76,8 +78,11 @@
       
       forEach(COLOR_CSS, function(key) {
         var s = getStyle(ele, key);
-        /* webkit returns undefined bg colors as rgba(0,0,0,0), easiest thing to do is ignore it */
-        if (s.match(RGBA_ZERO)) return;
+        // /* webkit returns undefined bg colors as rgba(0,0,0,0), easiest thing to do is ignore it */
+        // if (s.match(RGBA_ZERO) || s.match(RGB_ZERO)) {
+        //   console.log("skipping: " + key, ele);
+        //   return;
+        // }
         if (s) attribs.style[key] = s;
       });
       
@@ -107,6 +112,33 @@
     color[1] = Math.floor(color[1]);
     color[2] = Math.floor(color[2]);
     return color;
+  };
+  
+  function convertImageToDataURL(imageURL, algorithm, onComplete) {
+    var image = new Image();
+    image.onload = function() {
+      var div = document.createElement('div');
+      div.innerHTML = "<canvas width='" + this.width + "' height='" + this.height + "' />";
+      var canvas = div.childNodes[0], ctx = canvas.getContext('2d');
+      ctx.drawImage(this, 0, 0);
+      try {
+        var pixels = ctx.getImageData(0, 0, this.width, this.height),
+            length = pixels.data.length,
+            data   = pixels.data;
+        for (var i = 0; i < length; i += 4) {
+          var t       = filter(data[i], data[i + 1], data[i + 2], algorithm);
+          data[i]     = t[0];
+          data[i + 1] = t[1];
+          data[i + 2] = t[2];
+        }
+        ctx.putImageData(pixels, 0, 0);
+        onComplete(canvas.toDataURL('image/png'));
+      } catch (e) {
+        console.log(e, e.message);
+        onComplete(null);
+      }
+    };
+    image.src = imageURL;
   };
   
   function tr(color, callback) {
@@ -185,8 +217,10 @@
         if (orig.match(URL)) {
           convertImageToDataURL(RegExp.$1, alg, function(data) {
             if (data)
-              ele.style[attr] = orig.replace(url, 'url("' + data + '")');
+              ele.style[attr] = 'url("' + data + '")';
+            setTimeout(pop, 0);
           });
+        } else {
           setTimeout(pop, 0);
         }
       }
@@ -196,7 +230,7 @@
   }
   
   function getAlgorithm(callback) {
-    callback('Achromatopsia');
+    callback('Deuteranopia');
   }
   
   //
@@ -206,7 +240,7 @@
   window.colorScopeRun = function() {
     getAlgorithm(function(alg) {
       if (alg) {
-        recolor(index, fBlind[alg]);
+        recolorWithAlgorithm(Index, fBlind[alg]);
       }
     });
   }

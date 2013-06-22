@@ -1,0 +1,5 @@
+# colorscope.js
+
+## Development
+
+Serve this directory from a local webserver running on port 4000 and hit up `test.htm`.
