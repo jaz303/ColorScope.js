@@ -1,5 +1,15 @@
 # colorscope.js
 
+## Restrictions
+
+  * Images located on external domains cannot be translated because rendering their contents taints the `canvas` element, making `toDataURL()` unavailable.
+
+## TODO
+
+  * Minify the source and try embedding the code directly in the bookmarklet URL. I was initially worried the script would be too big.
+
+  * I'd like to have a go at redoing this as a Chrome plugin. I think this would allow me to get around the various security restrictions.
+
 ## Development
 
 Serve this directory from a local webserver running on port 4000 and hit up `test.htm`.
