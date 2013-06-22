@@ -1,12 +1,10 @@
 ;(function() {
   
-  var URL         = /url\(['"]?([^'"]+)['"]?\)/;
-  var RGB_ZERO    = /rgb\(\s*0,\s*0\s*,\s*0\s*\)/;
-  var RGBA_ZERO   = /rgba\(\s*0,\s*0\s*,\s*0\s*,\s*0\s*\)/;
-  var HEX_6       = /#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/ig;
-  var HEX_3       = /#([0-9a-f]{1})([0-9a-f]{1})([0-9a-f]{1})/ig;
-  var RGB         = /rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/g;
-  var RGBA        = /rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+),\s*(\d+)\s*\)/g;
+  var URL    = /url\(['"]?([^'"]+)['"]?\)/;
+  var HEX_6  = /#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/ig;
+  var HEX_3  = /#([0-9a-f]{1})([0-9a-f]{1})([0-9a-f]{1})/ig;
+  var RGB    = /rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/g;
+  var RGBA   = /rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+),\s*(\d+)\s*\)/g;
 
   var COLOR_CSS = [
     'color',
@@ -78,11 +76,6 @@
       
       forEach(COLOR_CSS, function(key) {
         var s = getStyle(ele, key);
-        // /* webkit returns undefined bg colors as rgba(0,0,0,0), easiest thing to do is ignore it */
-        // if (s.match(RGBA_ZERO) || s.match(RGB_ZERO)) {
-        //   console.log("skipping: " + key, ele);
-        //   return;
-        // }
         if (s) attribs.style[key] = s;
       });
       

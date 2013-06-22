@@ -10,6 +10,6 @@
 
   * I'd like to have a go at redoing this as a Chrome plugin. I think this would allow me to get around the various security restrictions.
 
-## Development
+## Hacking
 
 Serve this directory from a local webserver running on port 4000 and hit up `test.htm`.
