@@ -1,11 +1,15 @@
 # colorscope.js
 
-## Restrictions
+## Known Issues
 
+  * Very slow for pages containing a moderate number of images.
   * Images located on external domains cannot be translated because rendering their contents taints the `canvas` element, making `toDataURL()` unavailable.
 
 ## TODO
 
+  * Progress meter
+  * Prevent double invocation
+  * It would be cool to investigate possibilities for monkey-patching the canvas 2D context to do automatic translation whenever `fillStyle` or `strokeStyle` is updated.
   * I'd like to have a go at redoing this as a Chrome plugin. I think this would allow me to get around the various security restrictions.
 
 ## Hacking
