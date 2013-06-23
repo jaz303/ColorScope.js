@@ -339,6 +339,6 @@
     return([z,z,z]);
   };
   
-  return colorScope;
+  colorScope();
 
-})()();
+})()

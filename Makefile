@@ -1,4 +1,4 @@
-test.htm: bookmarklet.js
+test.htm: bookmarklet.js tpl/header.htm tpl/footer.htm
 	cat tpl/header.htm bookmarklet.js tpl/footer.htm > test.htm
 	
 bookmarklet.js: colorscope.js
