@@ -1,4 +1,6 @@
-# colorscope.js
+# ColorScope.js
+
+Here's a [blog post introducing ColorScope]("http://jasonframe.co.uk/logfile/2013/06/colorscope/").
 
 ## Known Issues
 
