@@ -4,7 +4,6 @@ Here's a [blog post introducing ColorScope](http://jasonframe.co.uk/logfile/2013
 
 ## Known Issues
 
-  * Clicking on the bookmarklet on Firefox just dumps `true` on a new page
   * *Very* slow for pages containing a moderate number of images.
   * Images located on external domains cannot be translated because rendering their contents taints the `canvas` element, making `toDataURL()` unavailable.
 
