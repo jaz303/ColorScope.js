@@ -2,6 +2,10 @@
 
 ColorScope is a Javascript bookmarklet for simulation various forms of colour-blindness on a browser's current web page. Here's an [introductory blog post](http://jasonframe.co.uk/logfile/2013/06/colorscope/).
 
+## Try it out
+
+[Direct link to bookmarklet](http://jasonframe.co.uk/logfile/2013/06/colorscope/#bookmarklet)
+
 ## Known Issues
 
   * *Very* slow for pages containing a moderate number of images.
