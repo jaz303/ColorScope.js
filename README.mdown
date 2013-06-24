@@ -1,12 +1,12 @@
-# ColorScope.js
+## ColorScope.js
 
 ColorScope is a Javascript bookmarklet for simulation various forms of colour-blindness on a browser's current web page. Here's an [introductory blog post](http://jasonframe.co.uk/logfile/2013/06/colorscope/).
 
-## Try it out
+### Try it out
 
 [Direct link to bookmarklet](http://jasonframe.co.uk/logfile/2013/06/colorscope/#bookmarklet)
 
-## Example
+### Example
 
 Before:
 
@@ -16,12 +16,12 @@ After:
 
 ![After](https://raw.github.com/jaz303/ColorScope.js/master/after.png)
 
-## Known Issues
+### Known Issues
 
   * *Very* slow for pages containing a moderate number of images.
   * Images located on external domains cannot be translated because rendering their contents taints the `canvas` element, making `toDataURL()` unavailable.
 
-## TODO
+### TODO
 
   * Progress meter
   * Prevent double invocation
