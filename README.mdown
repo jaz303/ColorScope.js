@@ -1,7 +1,5 @@
 ## ColorScope.js
 
-(c) 2013 Jason Frame [@jaz303](http://twitter.com/jaz303) MIT Licensed
-
 ColorScope is a Javascript bookmarklet for simulation various forms of colour-blindness on a browser's current web page. Here's an [introductory blog post](http://jasonframe.co.uk/logfile/2013/06/colorscope/).
 
 __Try it out__ - [Direct link to bookmarklet](http://jasonframe.co.uk/logfile/2013/06/colorscope/#bookmarklet)
@@ -30,8 +28,13 @@ After:
   * It would be cool to investigate possibilities for monkey-patching the canvas 2D context to do automatic translation whenever `fillStyle` or `strokeStyle` is updated.
   * I'd like to have a go at redoing this as a Chrome plugin. I think this would allow me to get around the various security restrictions.
 
-## Hacking
+### Hacking
 
   1. `npm install uglify-js`
   2. `make`
   3. serve this directory from a local webserver running on port 4000 and hit up `test.htm`.
+
+### License
+
+&copy; 2013 Jason Frame [ [@jaz303](http://twitter.com/jaz303) / [jason@onehackoranother.com](mailto:jason@onehackoranother.com) ]  
+Released under the MIT License.
