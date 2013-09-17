@@ -34,6 +34,17 @@
     'iframe'
   ];
 
+  var CHOOSER_Z_INDEX = 1 + function (el) {
+    var maxZ = 0;
+    while (el) {
+      if (el.nodeType === 1) {
+        maxZ = Math.max(maxZ, Number(getStyle(el, 'zIndex')) || 0);
+      }
+      el = el.nextSibling;
+    }
+    return maxZ;
+  }(document.body.firstChild);
+
   if (typeof Array.prototype.forEach === 'function') {
     function forEach(collection, callback) {
       collection.forEach(callback);
@@ -250,6 +261,7 @@
     chooser.style.padding = '10px';
     chooser.style.backgroundColor = '#2c3e50';
     chooser.style.boxShadow = '0 0 10px #505050';
+    chooser.style.zIndex = CHOOSER_Z_INDEX;
     for (var k in fBlind)
       addButton(chooser, k, '#27ae60');
     addButton(chooser, 'Cancel', '#c0392b');
